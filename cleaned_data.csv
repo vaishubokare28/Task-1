@@ -1,51 +1,35 @@
 # Data Cleaning and Preprocessing Script
 
-This Python script performs data cleaning and preprocessing on a CSV file from a ZIP archive. It utilizes the `pandas` library to handle missing values, remove duplicates, standardize text columns, format dates, and clean prices, ensuring the dataset is ready for further analysis.
+This Python script automates data cleaning and preprocessing tasks on a dataset from a ZIP archive. It leverages the `pandas` library to ensure that the dataset is cleaned, formatted, and ready for further analysis or machine learning tasks.
 
-## Key Steps
+## Description
 
-1. **Load Data**: Extracts and loads the CSV file from a ZIP archive.
-2. **Handle Missing Values**: 
-   - Identifies and handles missing values using `.isnull()`.
-   - Fills missing values for specific columns (e.g., 'rating' and 'rating_count').
-   - Drops rows with remaining missing values.
-3. **Remove Duplicates**: Removes duplicate rows from the dataset.
-4. **Text Standardization**:
-   - Standardizes text columns by converting all text to lowercase and stripping leading/trailing whitespaces.
-   - Normalizes gender values (e.g., 'Male' → 'male', 'Female' → 'female').
-5. **Date Formatting**: Converts any date columns to a consistent date format (`dd-mm-yyyy`).
-6. **Rename Columns**: Cleans column names by making them lowercase and replacing spaces with underscores.
-7. **Convert Data Types**: Ensures appropriate data types (e.g., `int` for age, `float` for ratings).
-8. **Price Cleaning**: Cleans 'price' column by removing unwanted characters (e.g., ₹, commas) and converting to numeric.
-9. **Export Cleaned Data**: Saves the cleaned dataset as `cleaned_data.csv`.
+This script is designed to clean and preprocess raw datasets. Specifically, it:
+- Loads a CSV file from a ZIP archive.
+- Handles missing values by filling or dropping them.
+- Removes duplicate rows.
+- Standardizes text values (e.g., gender, country names).
+- Converts date columns to a consistent format.
+- Renames column headers for uniformity.
+- Ensures appropriate data types (e.g., integer for age, float for ratings).
+
+## Features
+
+- **Missing Value Handling**: Automatically identifies and fills or drops missing values in the dataset.
+- **Duplicate Removal**: Cleans up duplicate rows to ensure data consistency.
+- **Text Standardization**: Standardizes text columns by converting to lowercase, stripping spaces, and normalizing values like gender.
+- **Date Format Conversion**: Ensures date columns are in a consistent format (`dd-mm-yyyy`).
+- **Column Name Standardization**: Cleans column names by converting them to lowercase and replacing spaces with underscores.
+- **Price Cleaning**: Removes non-numeric characters (e.g., currency symbols, commas) from price columns.
+- **Data Type Conversion**: Converts columns to appropriate data types (e.g., `int` for age, `float` for ratings).
 
 ## Requirements
 
 - Python 3.x
-- pandas library
+- `pandas` library
+- ZIP file containing a CSV
 
-## Usage
+You can install the required library by running the following:
 
-1. Ensure your data is in a ZIP file containing a CSV (e.g., `amazon.csv`).
-2. Run the script to clean and preprocess the data.
-3. The cleaned dataset will be saved as `cleaned_data.csv`.
-
-## Example
-
-```python
-import pandas as pd
-import zipfile
-
-# Full path to your zip file
-zip_path = r'C:\Users\vaish\Downloads\archive.zip'
-
-# Load CSV from ZIP
-with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-    with zip_ref.open('amazon.csv') as file:
-        df = pd.read_csv(file)
-
-# Data cleaning operations...
-# (Include the full script here)
-
-# Save the cleaned data
-df.to_csv("cleaned_data.csv", index=False)
+```bash
+pip install pandas
